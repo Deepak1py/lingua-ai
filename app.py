@@ -13,23 +13,39 @@ st.set_page_config(
 )
 
 # ---------------------------------------------------
-# CUSTOM CSS
+# FORCE DARK THEME + CUSTOM CSS
 # ---------------------------------------------------
 st.markdown(
     """
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Fira+Code:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@300;400;500&display=swap');
+
+/* ── Force dark on ALL devices ── */
+:root {
+    color-scheme: dark !important;
+}
+html, body {
+    background: #070810 !important;
+    color: #e8e6f0 !important;
+}
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
+html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"],
+[data-testid="stMain"], .main, .stApp {
     background: #070810 !important;
     color: #e8e6f0 !important;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
 }
 [data-testid="stAppViewContainer"] {
     background: radial-gradient(ellipse 80% 60% at 50% -10%, #1a0a3d 0%, #070810 60%) !important;
 }
+
+/* Force all text dark */
+p, span, div, label, h1, h2, h3, h4, h5, h6 {
+    color: #e8e6f0 !important;
+}
+
 #MainMenu, footer, header, [data-testid="stToolbar"],
 [data-testid="stDecoration"], [data-testid="stStatusWidget"] { display: none !important; }
 [data-testid="stSidebar"] { display: none !important; }
@@ -38,9 +54,10 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
     max-width: 1100px !important;
     padding: 0 2rem 4rem !important;
     margin: 0 auto !important;
+    background: transparent !important;
 }
 
-/* Hero */
+/* ── Hero ── */
 .hero {
     text-align: center;
     padding: 4rem 0 3rem;
@@ -58,8 +75,8 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
     display: inline-block;
     background: rgba(120,80,255,0.15);
     border: 1px solid rgba(120,80,255,0.4);
-    color: #a78bfa;
-    font-family: 'DM Mono', monospace;
+    color: #a78bfa !important;
+    font-family: 'Fira Code', monospace;
     font-size: 0.72rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -68,7 +85,7 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
     margin-bottom: 1.5rem;
 }
 .hero h1 {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: clamp(2.8rem, 6vw, 5rem);
     font-weight: 800;
     letter-spacing: -0.03em;
@@ -81,14 +98,14 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
 }
 .hero-sub {
     font-size: 1.05rem;
-    color: rgba(232,230,240,0.5);
+    color: rgba(232,230,240,0.5) !important;
     font-weight: 300;
     max-width: 500px;
     margin: 0 auto;
     line-height: 1.6;
 }
 
-/* Stats Bar */
+/* ── Stats Bar ── */
 .stats-bar {
     display: flex;
     justify-content: center;
@@ -99,149 +116,147 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
 }
 .stat-item { text-align: center; }
 .stat-num {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: 1.6rem;
     font-weight: 700;
-    color: #a78bfa;
+    color: #a78bfa !important;
 }
 .stat-label {
     font-size: 0.72rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: rgba(232,230,240,0.35);
-    font-family: 'DM Mono', monospace;
+    color: rgba(232,230,240,0.35) !important;
+    font-family: 'Fira Code', monospace;
     margin-top: 0.2rem;
 }
 
-/* Section labels */
+/* ── Section labels ── */
 .section-label {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 0.7rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(232,230,240,0.35);
+    color: rgba(232,230,240,0.35) !important;
     margin-bottom: 0.6rem;
 }
 
-/* =============================================
-   FIX 1: SELECTBOX — full deep targeting
-   ============================================= */
-/* Outer wrapper */
-[data-testid="stSelectbox"] > div > div,
-[data-testid="stSelectbox"] > div > div > div,
-div[data-baseweb="select"] > div,
-div[data-baseweb="select"] > div > div {
-    background: rgba(20, 15, 50, 0.95) !important;
-    border: 1px solid rgba(167,139,250,0.35) !important;
+/* ── Selectbox ── */
+[data-testid="stSelectbox"] * { color: #e8e6f0 !important; }
+[data-testid="stSelectbox"] > div > div {
+    background: #12122a !important;
+    border: 1px solid rgba(167,139,250,0.3) !important;
     border-radius: 14px !important;
     color: #e8e6f0 !important;
-    font-family: 'DM Sans', sans-serif !important;
-    font-size: 0.95rem !important;
-    padding: 0.5rem 1rem !important;
-    transition: border-color 0.2s;
-    backdrop-filter: blur(10px);
-}
-/* The visible selected text span */
-div[data-baseweb="select"] span,
-div[data-baseweb="select"] div[class*="singleValue"],
-div[data-baseweb="select"] div[class*="placeholder"],
-[data-testid="stSelectbox"] span,
-[data-testid="stSelectbox"] div[class*="singleValue"] {
-    color: #e8e6f0 !important;
-}
-/* Dropdown popover list */
-ul[data-testid="stSelectboxVirtualDropdown"],
-div[data-baseweb="popover"] ul,
-div[data-baseweb="menu"] {
-    background: #12103a !important;
-    border: 1px solid rgba(167,139,250,0.25) !important;
-    border-radius: 14px !important;
-}
-/* Each option item */
-div[data-baseweb="menu"] li,
-div[data-baseweb="menu"] [role="option"],
-ul[data-testid="stSelectboxVirtualDropdown"] li {
-    background: transparent !important;
-    color: #e8e6f0 !important;
-    font-family: 'DM Sans', sans-serif !important;
-}
-div[data-baseweb="menu"] li:hover,
-div[data-baseweb="menu"] [role="option"]:hover {
-    background: rgba(167,139,250,0.15) !important;
-}
-/* Highlighted/selected option */
-div[data-baseweb="menu"] [aria-selected="true"] {
-    background: rgba(124,58,237,0.3) !important;
-    color: #fff !important;
-}
-/* Hover on select box */
-[data-testid="stSelectbox"] > div > div:hover,
-div[data-baseweb="select"] > div:hover {
-    border-color: rgba(167,139,250,0.6) !important;
 }
 [data-testid="stSelectbox"] svg { fill: #a78bfa !important; }
 
-/* =============================================
-   FIX 2: TEXTAREA — nuke the white background
-   on all browsers/devices
-   ============================================= */
-/* Target every possible selector Streamlit uses */
+div[data-baseweb="select"] { background: transparent !important; }
+div[data-baseweb="select"] > div {
+    background: #12122a !important;
+    border: 1px solid rgba(167,139,250,0.3) !important;
+    border-radius: 14px !important;
+    color: #e8e6f0 !important;
+}
+div[data-baseweb="select"] > div > div {
+    color: #e8e6f0 !important;
+    background: transparent !important;
+}
+div[data-baseweb="select"] span {
+    color: #e8e6f0 !important;
+}
+div[data-baseweb="select"] input {
+    color: #e8e6f0 !important;
+    background: transparent !important;
+}
+div[data-baseweb="select"] div[class*="placeholder"] {
+    color: rgba(232,230,240,0.45) !important;
+}
+div[data-baseweb="menu"] {
+    background: #12122a !important;
+    border: 1px solid rgba(167,139,250,0.2) !important;
+}
+div[data-baseweb="menu"] li {
+    color: #e8e6f0 !important;
+    background: #12122a !important;
+}
+div[data-baseweb="menu"] li:hover {
+    background: rgba(167,139,250,0.15) !important;
+}
+div[data-baseweb="popover"] {
+    background: #12122a !important;
+}
+div[data-baseweb="popover"] * {
+    color: #e8e6f0 !important;
+    background-color: #12122a !important;
+}
+
+/* ── Text Areas ── */
+[data-testid="stTextArea"],
+[data-testid="stTextArea"] > div,
+[data-testid="stTextArea"] > div > div,
+.stTextArea,
+section.main textarea,
+textarea {
+    background: transparent !important;
+}
+
 [data-testid="stTextArea"] textarea,
 [data-testid="stTextArea"] > div > div > textarea,
 .stTextArea textarea,
 section.main textarea,
 textarea {
-    background: #0e0c24 !important;
-    background-color: #0e0c24 !important;
+    background: #0d0d1f !important;
+    background-color: #0d0d1f !important;
+    color: #e8e6f0 !important;
+    -webkit-text-fill-color: #e8e6f0 !important;
     -webkit-appearance: none !important;
     appearance: none !important;
-    border: 1px solid rgba(255,255,255,0.1) !important;
+    border: 1px solid rgba(255,255,255,0.08) !important;
     border-radius: 16px !important;
-    color: #e8e6f0 !important;
-    font-family: 'DM Sans', sans-serif !important;
+    font-family: 'Inter', sans-serif !important;
     font-size: 1.05rem !important;
     font-weight: 300 !important;
     line-height: 1.7 !important;
     padding: 1.2rem 1.4rem !important;
     resize: none !important;
-    transition: border-color 0.25s, box-shadow 0.25s;
-    -webkit-text-fill-color: #e8e6f0 !important;
+    transition: border-color 0.25s, box-shadow 0.25s !important;
     caret-color: #a78bfa !important;
+    box-shadow: none !important;
 }
+
 [data-testid="stTextArea"] textarea:focus,
+[data-testid="stTextArea"] > div > div > textarea:focus,
+.stTextArea textarea:focus,
 textarea:focus {
+    background: #0d0d1f !important;
+    background-color: #0d0d1f !important;
     border-color: rgba(167,139,250,0.6) !important;
-    box-shadow: 0 0 0 3px rgba(120,80,255,0.12), 0 0 30px rgba(120,80,255,0.08) !important;
+    box-shadow: 0 0 0 3px rgba(120,80,255,0.12) !important;
     outline: none !important;
-    background: #0e0c24 !important;
-    background-color: #0e0c24 !important;
 }
+
 [data-testid="stTextArea"] textarea::placeholder,
 textarea::placeholder {
     color: rgba(232,230,240,0.25) !important;
     -webkit-text-fill-color: rgba(232,230,240,0.25) !important;
 }
-/* The wrapper div around textarea — also force dark */
-[data-testid="stTextArea"] > div,
-[data-testid="stTextArea"] > div > div {
-    background: transparent !important;
-}
+
 [data-testid="stTextArea"] label {
-    font-family: 'DM Mono', monospace !important;
+    font-family: 'Fira Code', monospace !important;
     font-size: 0.72rem !important;
     letter-spacing: 0.1em !important;
     text-transform: uppercase !important;
     color: rgba(232,230,240,0.35) !important;
 }
 
-/* Button */
+/* ── Button ── */
 [data-testid="stButton"] > button {
     width: 100%;
     background: linear-gradient(135deg, #7c3aed, #4f46e5) !important;
     color: #fff !important;
     border: none !important;
     border-radius: 14px !important;
-    font-family: 'Syne', sans-serif !important;
+    font-family: 'Space Grotesk', sans-serif !important;
     font-size: 1rem !important;
     font-weight: 600 !important;
     letter-spacing: 0.04em !important;
@@ -257,22 +272,21 @@ textarea::placeholder {
 }
 [data-testid="stButton"] > button:active { transform: translateY(0) !important; }
 
-/* Output Card */
+/* ── Output Card ── */
 .output-card {
     background: rgba(167,139,250,0.05);
     border: 1px solid rgba(167,139,250,0.2);
     border-radius: 18px;
     padding: 1.6rem 1.8rem;
-    backdrop-filter: blur(12px);
     box-shadow: 0 0 40px rgba(120,80,255,0.06);
     min-height: 220px;
 }
 .output-label {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 0.68rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #a78bfa;
+    color: #a78bfa !important;
     margin-bottom: 0.8rem;
     display: flex;
     align-items: center;
@@ -290,8 +304,8 @@ textarea::placeholder {
     font-size: 1.15rem;
     font-weight: 300;
     line-height: 1.75;
-    color: #e8e6f0;
-    font-family: 'DM Sans', sans-serif;
+    color: #e8e6f0 !important;
+    font-family: 'Inter', sans-serif;
 }
 .output-meta {
     margin-top: 1rem;
@@ -302,14 +316,14 @@ textarea::placeholder {
     flex-wrap: wrap;
 }
 .output-meta-item {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 0.65rem;
     letter-spacing: 0.08em;
-    color: rgba(232,230,240,0.25);
+    color: rgba(232,230,240,0.25) !important;
     text-transform: uppercase;
 }
 .output-meta-item span {
-    color: rgba(167,139,250,0.7);
+    color: rgba(167,139,250,0.7) !important;
     margin-left: 0.3rem;
 }
 .output-empty {
@@ -317,44 +331,45 @@ textarea::placeholder {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgba(232,230,240,0.12);
-    font-family: 'DM Mono', monospace;
+    color: rgba(232,230,240,0.12) !important;
+    font-family: 'Fira Code', monospace;
     font-size: 0.78rem;
     letter-spacing: 0.12em;
 }
 
-/* Char counter */
+/* ── Char counter ── */
 .char-counter {
     text-align: right;
-    font-family: 'DM Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 0.68rem;
-    color: rgba(232,230,240,0.2);
+    color: rgba(232,230,240,0.2) !important;
     margin-top: 0.3rem;
     margin-bottom: 1rem;
 }
 .char-warn { color: rgba(251,191,36,0.55) !important; }
 .char-danger { color: rgba(248,113,113,0.65) !important; }
 
-/* Alerts */
+/* ── Alerts ── */
 [data-testid="stAlert"] {
     border-radius: 12px !important;
     background: rgba(120,80,255,0.08) !important;
-    font-family: 'DM Sans', sans-serif !important;
+    font-family: 'Inter', sans-serif !important;
+    color: #e8e6f0 !important;
 }
 
-/* Features */
+/* ── Features ── */
 .features-section {
     margin-top: 5rem;
     padding-top: 3rem;
     border-top: 1px solid rgba(255,255,255,0.06);
 }
 .features-title {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: 1.6rem;
     font-weight: 700;
     text-align: center;
     margin-bottom: 2rem;
-    color: rgba(232,230,240,0.85);
+    color: rgba(232,230,240,0.85) !important;
 }
 .feat-grid { display: flex; gap: 1rem; flex-wrap: wrap; }
 .feat-card {
@@ -368,27 +383,32 @@ textarea::placeholder {
 .feat-card:hover { border-color: rgba(167,139,250,0.3); transform: translateY(-3px); }
 .feat-icon { font-size: 1.6rem; margin-bottom: 0.8rem; }
 .feat-name {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-weight: 600;
     font-size: 0.95rem;
     margin-bottom: 0.4rem;
-    color: #e8e6f0;
+    color: #e8e6f0 !important;
 }
-.feat-desc { font-size: 0.82rem; color: rgba(232,230,240,0.4); line-height: 1.5; font-weight: 300; }
+.feat-desc {
+    font-size: 0.82rem;
+    color: rgba(232,230,240,0.4) !important;
+    line-height: 1.5;
+    font-weight: 300;
+}
 
-/* Footer */
+/* ── Footer ── */
 .site-footer {
     text-align: center;
     margin-top: 5rem;
     padding-top: 2rem;
     border-top: 1px solid rgba(255,255,255,0.05);
     font-size: 0.78rem;
-    color: rgba(232,230,240,0.15);
-    font-family: 'DM Mono', monospace;
+    color: rgba(232,230,240,0.15) !important;
+    font-family: 'Fira Code', monospace;
     letter-spacing: 0.05em;
 }
 
-/* Animations */
+/* ── Animations ── */
 @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -454,7 +474,8 @@ with sel_col1:
     source_lang = st.selectbox(
         "Source Language",
         src_options,
-        index=0,
+        index=None,
+        placeholder="Select language",
         label_visibility="collapsed",
         key="src_lang",
     )
@@ -468,11 +489,11 @@ with sel_col2:
 
 with sel_col3:
     st.markdown('<p class="section-label">Target Language</p>', unsafe_allow_html=True)
-    hindi_idx = LANG_NAMES.index("Hindi") if "Hindi" in LANG_NAMES else 0
     target_lang = st.selectbox(
         "Target Language",
         LANG_NAMES,
-        index=hindi_idx,
+        index=None,
+        placeholder="Select language",
         label_visibility="collapsed",
         key="tgt_lang",
     )
@@ -580,6 +601,10 @@ with b2:
     if st.button("✦  Translate Now", use_container_width=True):
         if not input_text.strip():
             st.warning("Please enter some text before translating.")
+        elif source_lang is None:
+            st.warning("Please select a source language.")
+        elif target_lang is None:
+            st.warning("Please select a target language.")
         elif len(input_text) > 5000:
             st.warning("Text exceeds 5000 characters. Please shorten your input.")
         elif source_lang != "🔍 Auto Detect" and source_lang == target_lang:
