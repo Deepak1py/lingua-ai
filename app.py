@@ -17,14 +17,14 @@ st.set_page_config(
 # ---------------------------------------------------
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@300;400;500&display=swap');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
     background: #070810 !important;
     color: #e8e6f0 !important;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
 }
 [data-testid="stAppViewContainer"] {
     background: radial-gradient(ellipse 80% 60% at 50% -10%, #1a0a3d 0%, #070810 60%) !important;
@@ -58,7 +58,7 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
     background: rgba(120,80,255,0.15);
     border: 1px solid rgba(120,80,255,0.4);
     color: #a78bfa;
-    font-family: 'DM Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 0.72rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -67,7 +67,7 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
     margin-bottom: 1.5rem;
 }
 .hero h1 {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: clamp(2.8rem, 6vw, 5rem);
     font-weight: 800;
     letter-spacing: -0.03em;
@@ -98,7 +98,7 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
 }
 .stat-item { text-align: center; }
 .stat-num {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: 1.6rem;
     font-weight: 700;
     color: #a78bfa;
@@ -108,13 +108,13 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: rgba(232,230,240,0.35);
-    font-family: 'DM Mono', monospace;
+    font-family: 'Fira Code', monospace;
     margin-top: 0.2rem;
 }
 
 /* Section labels */
 .section-label {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 0.7rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -128,7 +128,7 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
     border: 1px solid rgba(255,255,255,0.1) !important;
     border-radius: 14px !important;
     color: #e8e6f0 !important;
-    font-family: 'DM Sans', sans-serif !important;
+    font-family: 'Inter', sans-serif !important;
     font-size: 0.95rem !important;
     padding: 0.5rem 1rem !important;
     transition: border-color 0.2s;
@@ -145,7 +145,7 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
     border: 1px solid rgba(255,255,255,0.08) !important;
     border-radius: 16px !important;
     color: #e8e6f0 !important;
-    font-family: 'DM Sans', sans-serif !important;
+    font-family: 'Inter', sans-serif !important;
     font-size: 1.05rem !important;
     font-weight: 300 !important;
     line-height: 1.7 !important;
@@ -160,7 +160,7 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
 }
 [data-testid="stTextArea"] textarea::placeholder { color: rgba(232,230,240,0.2) !important; }
 [data-testid="stTextArea"] label {
-    font-family: 'DM Mono', monospace !important;
+    font-family: 'Fira Code', monospace !important;
     font-size: 0.72rem !important;
     letter-spacing: 0.1em !important;
     text-transform: uppercase !important;
@@ -174,7 +174,7 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
     color: #fff !important;
     border: none !important;
     border-radius: 14px !important;
-    font-family: 'Syne', sans-serif !important;
+    font-family: 'Space Grotesk', sans-serif !important;
     font-size: 1rem !important;
     font-weight: 600 !important;
     letter-spacing: 0.04em !important;
@@ -201,7 +201,7 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
     min-height: 220px;
 }
 .output-label {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 0.68rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -224,7 +224,7 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
     font-weight: 300;
     line-height: 1.75;
     color: #e8e6f0;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
 }
 .output-meta {
     margin-top: 1rem;
@@ -235,7 +235,7 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
     flex-wrap: wrap;
 }
 .output-meta-item {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 0.65rem;
     letter-spacing: 0.08em;
     color: rgba(232,230,240,0.25);
@@ -251,7 +251,7 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
     align-items: center;
     justify-content: center;
     color: rgba(232,230,240,0.12);
-    font-family: 'DM Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 0.78rem;
     letter-spacing: 0.12em;
 }
@@ -259,7 +259,7 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
 /* Char counter */
 .char-counter {
     text-align: right;
-    font-family: 'DM Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 0.68rem;
     color: rgba(232,230,240,0.2);
     margin-top: 0.3rem;
@@ -272,7 +272,7 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
 [data-testid="stAlert"] {
     border-radius: 12px !important;
     background: rgba(120,80,255,0.08) !important;
-    font-family: 'DM Sans', sans-serif !important;
+    font-family: 'Inter', sans-serif !important;
 }
 
 /* Features */
@@ -282,7 +282,7 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
     border-top: 1px solid rgba(255,255,255,0.06);
 }
 .features-title {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: 1.6rem;
     font-weight: 700;
     text-align: center;
@@ -301,7 +301,7 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
 .feat-card:hover { border-color: rgba(167,139,250,0.3); transform: translateY(-3px); }
 .feat-icon { font-size: 1.6rem; margin-bottom: 0.8rem; }
 .feat-name {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-weight: 600;
     font-size: 0.95rem;
     margin-bottom: 0.4rem;
@@ -317,7 +317,7 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
     border-top: 1px solid rgba(255,255,255,0.05);
     font-size: 0.78rem;
     color: rgba(232,230,240,0.15);
-    font-family: 'DM Mono', monospace;
+    font-family: 'Fira Code', monospace;
     letter-spacing: 0.05em;
 }
 
