@@ -123,40 +123,25 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
 }
 
 /* Selectbox */
-[data-testid="stSelectbox"] { color: #e8e6f0 !important; }
+[data-testid="stSelectbox"] * { color: #e8e6f0 !important; }
 [data-testid="stSelectbox"] > div > div {
-    background: rgba(255,255,255,0.04) !important;
-    border: 1px solid rgba(255,255,255,0.1) !important;
+    background: rgba(255,255,255,0.06) !important;
+    border: 1px solid rgba(167,139,250,0.3) !important;
     border-radius: 14px !important;
-    color: #e8e6f0 !important;
-    font-family: 'Inter', sans-serif !important;
-    font-size: 0.95rem !important;
-    padding: 0.5rem 1rem !important;
-    transition: border-color 0.2s;
-}
-[data-testid="stSelectbox"] > div > div:hover {
-    border-color: rgba(167,139,250,0.5) !important;
-}
-[data-testid="stSelectbox"] span {
-    color: #e8e6f0 !important;
-    font-family: 'Inter', sans-serif !important;
-    font-size: 0.95rem !important;
-}
-[data-testid="stSelectbox"] p {
-    color: #e8e6f0 !important;
-    font-family: 'Inter', sans-serif !important;
 }
 [data-testid="stSelectbox"] svg { fill: #a78bfa !important; }
-div[data-baseweb="select"] * { color: #e8e6f0 !important; }
-div[data-baseweb="select"] input { color: #e8e6f0 !important; }
-div[data-baseweb="popover"] li {
-    background: #0f0f1a !important;
+div[data-baseweb="select"] { background: transparent !important; }
+div[data-baseweb="select"] > div {
+    background: rgba(255,255,255,0.06) !important;
+    border: 1px solid rgba(167,139,250,0.3) !important;
+    border-radius: 14px !important;
     color: #e8e6f0 !important;
-    font-family: 'Inter', sans-serif !important;
 }
-div[data-baseweb="popover"] li:hover {
-    background: rgba(167,139,250,0.15) !important;
-}
+div[data-baseweb="select"] > div > div { color: #e8e6f0 !important; }
+div[data-baseweb="select"] span { color: #e8e6f0 !important; }
+div[data-baseweb="menu"] { background: #0f0f1a !important; }
+div[data-baseweb="menu"] li { color: #e8e6f0 !important; background: #0f0f1a !important; }
+div[data-baseweb="menu"] li:hover { background: rgba(167,139,250,0.15) !important; }
 
 /* Text Areas */
 [data-testid="stTextArea"] textarea {
