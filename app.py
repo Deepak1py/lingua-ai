@@ -9,22 +9,36 @@ st.set_page_config(
     page_title="LinguaAI — Neural Translation",
     page_icon="🌐",
     layout="wide",
-    initial_sidebar_state="collapsed"
+    initial_sidebar_state="collapsed",
+)
+
+# Force dark theme
+st.markdown(
+    """
+    <style>
+        [data-testid="stTextArea"] textarea {
+            background-color: #1a1a2e !important;
+            color: #e8e6f0 !important;
+        }
+    </style>
+""",
+    unsafe_allow_html=True,
 )
 
 # ---------------------------------------------------
 # CUSTOM CSS
 # ---------------------------------------------------
-st.markdown("""
+st.markdown(
+    """
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Fira+Code:wght@300;400;500&display=swap');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
     background: #070810 !important;
     color: #e8e6f0 !important;
-    font-family: 'Inter', sans-serif;
+    font-family: 'DM Sans', sans-serif;
 }
 [data-testid="stAppViewContainer"] {
     background: radial-gradient(ellipse 80% 60% at 50% -10%, #1a0a3d 0%, #070810 60%) !important;
@@ -58,7 +72,7 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
     background: rgba(120,80,255,0.15);
     border: 1px solid rgba(120,80,255,0.4);
     color: #a78bfa;
-    font-family: 'Fira Code', monospace;
+    font-family: 'DM Mono', monospace;
     font-size: 0.72rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -67,7 +81,7 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
     margin-bottom: 1.5rem;
 }
 .hero h1 {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-size: clamp(2.8rem, 6vw, 5rem);
     font-weight: 800;
     letter-spacing: -0.03em;
@@ -98,7 +112,7 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
 }
 .stat-item { text-align: center; }
 .stat-num {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-size: 1.6rem;
     font-weight: 700;
     color: #a78bfa;
@@ -108,13 +122,13 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: rgba(232,230,240,0.35);
-    font-family: 'Fira Code', monospace;
+    font-family: 'DM Mono', monospace;
     margin-top: 0.2rem;
 }
 
 /* Section labels */
 .section-label {
-    font-family: 'Fira Code', monospace;
+    font-family: 'DM Mono', monospace;
     font-size: 0.7rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -123,25 +137,21 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
 }
 
 /* Selectbox */
-[data-testid="stSelectbox"] * { color: #e8e6f0 !important; }
 [data-testid="stSelectbox"] > div > div {
-    background: rgba(255,255,255,0.06) !important;
-    border: 1px solid rgba(167,139,250,0.3) !important;
-    border-radius: 14px !important;
-}
-[data-testid="stSelectbox"] svg { fill: #a78bfa !important; }
-div[data-baseweb="select"] { background: transparent !important; }
-div[data-baseweb="select"] > div {
-    background: rgba(255,255,255,0.06) !important;
-    border: 1px solid rgba(167,139,250,0.3) !important;
+    background: rgba(255,255,255,0.04) !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
     border-radius: 14px !important;
     color: #e8e6f0 !important;
+    font-family: 'DM Sans', sans-serif !important;
+    font-size: 0.95rem !important;
+    padding: 0.5rem 1rem !important;
+    transition: border-color 0.2s;
+    backdrop-filter: blur(10px);
 }
-div[data-baseweb="select"] > div > div { color: #e8e6f0 !important; }
-div[data-baseweb="select"] span { color: #e8e6f0 !important; }
-div[data-baseweb="menu"] { background: #0f0f1a !important; }
-div[data-baseweb="menu"] li { color: #e8e6f0 !important; background: #0f0f1a !important; }
-div[data-baseweb="menu"] li:hover { background: rgba(167,139,250,0.15) !important; }
+[data-testid="stSelectbox"] > div > div:hover {
+    border-color: rgba(167,139,250,0.5) !important;
+}
+[data-testid="stSelectbox"] svg { fill: #a78bfa !important; }
 
 /* Text Areas */
 [data-testid="stTextArea"] textarea {
@@ -149,7 +159,7 @@ div[data-baseweb="menu"] li:hover { background: rgba(167,139,250,0.15) !importan
     border: 1px solid rgba(255,255,255,0.08) !important;
     border-radius: 16px !important;
     color: #e8e6f0 !important;
-    font-family: 'Inter', sans-serif !important;
+    font-family: 'DM Sans', sans-serif !important;
     font-size: 1.05rem !important;
     font-weight: 300 !important;
     line-height: 1.7 !important;
@@ -164,7 +174,7 @@ div[data-baseweb="menu"] li:hover { background: rgba(167,139,250,0.15) !importan
 }
 [data-testid="stTextArea"] textarea::placeholder { color: rgba(232,230,240,0.2) !important; }
 [data-testid="stTextArea"] label {
-    font-family: 'Fira Code', monospace !important;
+    font-family: 'DM Mono', monospace !important;
     font-size: 0.72rem !important;
     letter-spacing: 0.1em !important;
     text-transform: uppercase !important;
@@ -178,7 +188,7 @@ div[data-baseweb="menu"] li:hover { background: rgba(167,139,250,0.15) !importan
     color: #fff !important;
     border: none !important;
     border-radius: 14px !important;
-    font-family: 'Space Grotesk', sans-serif !important;
+    font-family: 'Syne', sans-serif !important;
     font-size: 1rem !important;
     font-weight: 600 !important;
     letter-spacing: 0.04em !important;
@@ -205,7 +215,7 @@ div[data-baseweb="menu"] li:hover { background: rgba(167,139,250,0.15) !importan
     min-height: 220px;
 }
 .output-label {
-    font-family: 'Fira Code', monospace;
+    font-family: 'DM Mono', monospace;
     font-size: 0.68rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -228,7 +238,7 @@ div[data-baseweb="menu"] li:hover { background: rgba(167,139,250,0.15) !importan
     font-weight: 300;
     line-height: 1.75;
     color: #e8e6f0;
-    font-family: 'Inter', sans-serif;
+    font-family: 'DM Sans', sans-serif;
 }
 .output-meta {
     margin-top: 1rem;
@@ -239,7 +249,7 @@ div[data-baseweb="menu"] li:hover { background: rgba(167,139,250,0.15) !importan
     flex-wrap: wrap;
 }
 .output-meta-item {
-    font-family: 'Fira Code', monospace;
+    font-family: 'DM Mono', monospace;
     font-size: 0.65rem;
     letter-spacing: 0.08em;
     color: rgba(232,230,240,0.25);
@@ -255,7 +265,7 @@ div[data-baseweb="menu"] li:hover { background: rgba(167,139,250,0.15) !importan
     align-items: center;
     justify-content: center;
     color: rgba(232,230,240,0.12);
-    font-family: 'Fira Code', monospace;
+    font-family: 'DM Mono', monospace;
     font-size: 0.78rem;
     letter-spacing: 0.12em;
 }
@@ -263,7 +273,7 @@ div[data-baseweb="menu"] li:hover { background: rgba(167,139,250,0.15) !importan
 /* Char counter */
 .char-counter {
     text-align: right;
-    font-family: 'Fira Code', monospace;
+    font-family: 'DM Mono', monospace;
     font-size: 0.68rem;
     color: rgba(232,230,240,0.2);
     margin-top: 0.3rem;
@@ -276,7 +286,7 @@ div[data-baseweb="menu"] li:hover { background: rgba(167,139,250,0.15) !importan
 [data-testid="stAlert"] {
     border-radius: 12px !important;
     background: rgba(120,80,255,0.08) !important;
-    font-family: 'Inter', sans-serif !important;
+    font-family: 'DM Sans', sans-serif !important;
 }
 
 /* Features */
@@ -286,7 +296,7 @@ div[data-baseweb="menu"] li:hover { background: rgba(167,139,250,0.15) !importan
     border-top: 1px solid rgba(255,255,255,0.06);
 }
 .features-title {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-size: 1.6rem;
     font-weight: 700;
     text-align: center;
@@ -305,7 +315,7 @@ div[data-baseweb="menu"] li:hover { background: rgba(167,139,250,0.15) !importan
 .feat-card:hover { border-color: rgba(167,139,250,0.3); transform: translateY(-3px); }
 .feat-icon { font-size: 1.6rem; margin-bottom: 0.8rem; }
 .feat-name {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-weight: 600;
     font-size: 0.95rem;
     margin-bottom: 0.4rem;
@@ -321,7 +331,7 @@ div[data-baseweb="menu"] li:hover { background: rgba(167,139,250,0.15) !importan
     border-top: 1px solid rgba(255,255,255,0.05);
     font-size: 0.78rem;
     color: rgba(232,230,240,0.15);
-    font-family: 'Fira Code', monospace;
+    font-family: 'DM Mono', monospace;
     letter-spacing: 0.05em;
 }
 
@@ -340,7 +350,9 @@ div[data-baseweb="menu"] li:hover { background: rgba(167,139,250,0.15) !importan
 
 [data-testid="column"] { padding: 0 0.5rem !important; }
 </style>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)
 
 # ---------------------------------------------------
 # LANGUAGE MAP
@@ -352,7 +364,8 @@ LANG_NAMES = list(LANG_DISPLAY_SORTED.keys())
 # ---------------------------------------------------
 # HERO
 # ---------------------------------------------------
-st.markdown("""
+st.markdown(
+    """
 <div class="hero">
     <div class="hero-badge">✦ Powered by Google Translate · 100+ Languages</div>
     <h1>Break Every<br>Language Barrier</h1>
@@ -361,16 +374,21 @@ st.markdown("""
         names respected, auto-detection built-in, deploy anywhere for free.
     </p>
 </div>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)
 
-st.markdown("""
+st.markdown(
+    """
 <div class="stats-bar">
     <div class="stat-item"><div class="stat-num">100+</div><div class="stat-label">Languages</div></div>
     <div class="stat-item"><div class="stat-num">Google</div><div class="stat-label">Translation Engine</div></div>
     <div class="stat-item"><div class="stat-num">Auto</div><div class="stat-label">Language Detection</div></div>
     <div class="stat-item"><div class="stat-num">Free</div><div class="stat-label">No API Key Needed</div></div>
 </div>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)
 
 # ---------------------------------------------------
 # LANGUAGE SELECTORS
@@ -381,26 +399,33 @@ with sel_col1:
     st.markdown('<p class="section-label">Source Language</p>', unsafe_allow_html=True)
     src_options = ["🔍 Auto Detect"] + LANG_NAMES
     source_lang = st.selectbox(
-        "Source Language", src_options, index=0,
-        label_visibility="collapsed", key="src_lang"
+        "Source Language",
+        src_options,
+        index=0,
+        label_visibility="collapsed",
+        key="src_lang",
     )
 
 with sel_col2:
     st.markdown(
         '<div style="display:flex;align-items:center;justify-content:center;'
         'padding-top:1.8rem;color:rgba(167,139,250,0.45);font-size:1.3rem;">⇄</div>',
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
 
 with sel_col3:
     st.markdown('<p class="section-label">Target Language</p>', unsafe_allow_html=True)
     hindi_idx = LANG_NAMES.index("Hindi") if "Hindi" in LANG_NAMES else 0
     target_lang = st.selectbox(
-        "Target Language", LANG_NAMES, index=hindi_idx,
-        label_visibility="collapsed", key="tgt_lang"
+        "Target Language",
+        LANG_NAMES,
+        index=hindi_idx,
+        label_visibility="collapsed",
+        key="tgt_lang",
     )
 
 st.markdown("<div style='height:1rem'></div>", unsafe_allow_html=True)
+
 
 # ---------------------------------------------------
 # TRANSLATOR
@@ -409,7 +434,9 @@ st.markdown("<div style='height:1rem'></div>", unsafe_allow_html=True)
 def get_translator():
     return Translator()
 
+
 translator = get_translator()
+
 
 # ---------------------------------------------------
 # TRANSLATE FUNCTION
@@ -417,6 +444,7 @@ translator = get_translator()
 def translate_text(text, src_code, dest_code):
     result = translator.translate(text, src=src_code, dest=dest_code)
     return result.text, result.src
+
 
 # ---------------------------------------------------
 # SESSION STATE
@@ -441,7 +469,7 @@ with col1:
         placeholder="Type or paste your text here…",
         height=220,
         key="input_text",
-        label_visibility="visible"
+        label_visibility="visible",
     )
     char_count = len(input_text)
     if char_count > 4500:
@@ -452,21 +480,23 @@ with col1:
         counter_cls = "char-counter"
     st.markdown(
         f'<p class="{counter_cls}">{char_count} / 5000 characters</p>',
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
 
 with col_mid:
     st.markdown("<div style='height:3rem'></div>", unsafe_allow_html=True)
 
 with col2:
-    st.markdown('<p class="section-label">Translation Output</p>', unsafe_allow_html=True)
+    st.markdown(
+        '<p class="section-label">Translation Output</p>', unsafe_allow_html=True
+    )
 
     if st.session_state.translation_result:
         detected_name = LANGUAGES.get(
-            st.session_state.detected_lang,
-            st.session_state.detected_lang
+            st.session_state.detected_lang, st.session_state.detected_lang
         ).title()
-        st.markdown(f"""
+        st.markdown(
+            f"""
         <div class="output-card">
             <div class="output-label">Translation ready</div>
             <div class="output-text">{st.session_state.translation_result}</div>
@@ -476,11 +506,16 @@ with col2:
                 <div class="output-meta-item">Characters<span>{st.session_state.char_count}</span></div>
             </div>
         </div>
-        """, unsafe_allow_html=True)
+        """,
+            unsafe_allow_html=True,
+        )
     else:
-        st.markdown("""
+        st.markdown(
+            """
         <div class="output-card output-empty">AWAITING INPUT</div>
-        """, unsafe_allow_html=True)
+        """,
+            unsafe_allow_html=True,
+        )
 
 # ---------------------------------------------------
 # TRANSLATE BUTTON
@@ -497,13 +532,19 @@ with b2:
         elif source_lang != "🔍 Auto Detect" and source_lang == target_lang:
             st.warning("Source and target language are the same.")
         else:
-            src_code = "auto" if source_lang == "🔍 Auto Detect" else LANG_DISPLAY_SORTED[source_lang]
+            src_code = (
+                "auto"
+                if source_lang == "🔍 Auto Detect"
+                else LANG_DISPLAY_SORTED[source_lang]
+            )
             dest_code = LANG_DISPLAY_SORTED[target_lang]
 
             with st.spinner("Translating…"):
                 try:
                     start = time.time()
-                    result_text, detected = translate_text(input_text, src_code, dest_code)
+                    result_text, detected = translate_text(
+                        input_text, src_code, dest_code
+                    )
                     elapsed = round(time.time() - start, 2)
 
                     st.session_state.translation_result = result_text
@@ -513,12 +554,15 @@ with b2:
                     st.rerun()
 
                 except Exception as e:
-                    st.error(f"Translation failed: {e}. Check your internet connection.")
+                    st.error(
+                        f"Translation failed: {e}. Check your internet connection."
+                    )
 
 # ---------------------------------------------------
 # FEATURES
 # ---------------------------------------------------
-st.markdown("""
+st.markdown(
+    """
 <div class="features-section">
     <p class="features-title">Why LinguaAI?</p>
     <div class="feat-grid">
@@ -549,13 +593,18 @@ st.markdown("""
         </div>
     </div>
 </div>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)
 
 # ---------------------------------------------------
 # FOOTER
 # ---------------------------------------------------
-st.markdown("""
+st.markdown(
+    """
 <div class="site-footer">
     LinguaAI · Built with Streamlit & Google Translate · 100+ Languages · Deploy Anywhere for Free
 </div>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)

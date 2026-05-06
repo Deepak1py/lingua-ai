@@ -1,0 +1,7 @@
+mkdir .streamlit
+echo "[theme]
+base = 'dark'
+backgroundColor = '#070810'
+secondaryBackgroundColor = '#0f0f1a'
+textColor = '#e8e6f0'
+primaryColor = '#7c3aed'" > .streamlit/config.toml
