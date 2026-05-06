@@ -12,19 +12,6 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# Force dark theme
-st.markdown(
-    """
-    <style>
-        [data-testid="stTextArea"] textarea {
-            background-color: #1a1a2e !important;
-            color: #e8e6f0 !important;
-        }
-    </style>
-""",
-    unsafe_allow_html=True,
-)
-
 # ---------------------------------------------------
 # CUSTOM CSS
 # ---------------------------------------------------
@@ -136,10 +123,16 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
     margin-bottom: 0.6rem;
 }
 
-/* Selectbox */
-[data-testid="stSelectbox"] > div > div {
-    background: rgba(255,255,255,0.04) !important;
-    border: 1px solid rgba(255,255,255,0.1) !important;
+/* =============================================
+   FIX 1: SELECTBOX — full deep targeting
+   ============================================= */
+/* Outer wrapper */
+[data-testid="stSelectbox"] > div > div,
+[data-testid="stSelectbox"] > div > div > div,
+div[data-baseweb="select"] > div,
+div[data-baseweb="select"] > div > div {
+    background: rgba(20, 15, 50, 0.95) !important;
+    border: 1px solid rgba(167,139,250,0.35) !important;
     border-radius: 14px !important;
     color: #e8e6f0 !important;
     font-family: 'DM Sans', sans-serif !important;
@@ -148,15 +141,61 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
     transition: border-color 0.2s;
     backdrop-filter: blur(10px);
 }
-[data-testid="stSelectbox"] > div > div:hover {
-    border-color: rgba(167,139,250,0.5) !important;
+/* The visible selected text span */
+div[data-baseweb="select"] span,
+div[data-baseweb="select"] div[class*="singleValue"],
+div[data-baseweb="select"] div[class*="placeholder"],
+[data-testid="stSelectbox"] span,
+[data-testid="stSelectbox"] div[class*="singleValue"] {
+    color: #e8e6f0 !important;
+}
+/* Dropdown popover list */
+ul[data-testid="stSelectboxVirtualDropdown"],
+div[data-baseweb="popover"] ul,
+div[data-baseweb="menu"] {
+    background: #12103a !important;
+    border: 1px solid rgba(167,139,250,0.25) !important;
+    border-radius: 14px !important;
+}
+/* Each option item */
+div[data-baseweb="menu"] li,
+div[data-baseweb="menu"] [role="option"],
+ul[data-testid="stSelectboxVirtualDropdown"] li {
+    background: transparent !important;
+    color: #e8e6f0 !important;
+    font-family: 'DM Sans', sans-serif !important;
+}
+div[data-baseweb="menu"] li:hover,
+div[data-baseweb="menu"] [role="option"]:hover {
+    background: rgba(167,139,250,0.15) !important;
+}
+/* Highlighted/selected option */
+div[data-baseweb="menu"] [aria-selected="true"] {
+    background: rgba(124,58,237,0.3) !important;
+    color: #fff !important;
+}
+/* Hover on select box */
+[data-testid="stSelectbox"] > div > div:hover,
+div[data-baseweb="select"] > div:hover {
+    border-color: rgba(167,139,250,0.6) !important;
 }
 [data-testid="stSelectbox"] svg { fill: #a78bfa !important; }
 
-/* Text Areas */
-[data-testid="stTextArea"] textarea {
-    background: rgba(255,255,255,0.03) !important;
-    border: 1px solid rgba(255,255,255,0.08) !important;
+/* =============================================
+   FIX 2: TEXTAREA — nuke the white background
+   on all browsers/devices
+   ============================================= */
+/* Target every possible selector Streamlit uses */
+[data-testid="stTextArea"] textarea,
+[data-testid="stTextArea"] > div > div > textarea,
+.stTextArea textarea,
+section.main textarea,
+textarea {
+    background: #0e0c24 !important;
+    background-color: #0e0c24 !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
     border-radius: 16px !important;
     color: #e8e6f0 !important;
     font-family: 'DM Sans', sans-serif !important;
@@ -166,13 +205,27 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
     padding: 1.2rem 1.4rem !important;
     resize: none !important;
     transition: border-color 0.25s, box-shadow 0.25s;
+    -webkit-text-fill-color: #e8e6f0 !important;
+    caret-color: #a78bfa !important;
 }
-[data-testid="stTextArea"] textarea:focus {
+[data-testid="stTextArea"] textarea:focus,
+textarea:focus {
     border-color: rgba(167,139,250,0.6) !important;
     box-shadow: 0 0 0 3px rgba(120,80,255,0.12), 0 0 30px rgba(120,80,255,0.08) !important;
     outline: none !important;
+    background: #0e0c24 !important;
+    background-color: #0e0c24 !important;
 }
-[data-testid="stTextArea"] textarea::placeholder { color: rgba(232,230,240,0.2) !important; }
+[data-testid="stTextArea"] textarea::placeholder,
+textarea::placeholder {
+    color: rgba(232,230,240,0.25) !important;
+    -webkit-text-fill-color: rgba(232,230,240,0.25) !important;
+}
+/* The wrapper div around textarea — also force dark */
+[data-testid="stTextArea"] > div,
+[data-testid="stTextArea"] > div > div {
+    background: transparent !important;
+}
 [data-testid="stTextArea"] label {
     font-family: 'DM Mono', monospace !important;
     font-size: 0.72rem !important;
